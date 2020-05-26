@@ -25,6 +25,7 @@ CONTENT
 }
 
 resource aws_organizations_policy_attachment "config_attachment" {
+  count = var.already_exists ? 0 : 1
   policy_id = aws_organizations_policy.config[0].id
   target_id = aws_organizations_organization.org[0].roots[0]["id"]
 }
